@@ -99,11 +99,9 @@ $projects = [
     ]
 ];
 
-// Get project from URL path
-$path = trim($_SERVER['REQUEST_URI'], '/'); // Get the path without leading/trailing slashes
-$path_parts = explode('/', $path);
-$project_name = $path_parts[0] ?? ''; // First segment is project name
-$redirect_type = $path_parts[1] ?? 'web'; // Second segment is redirect type, default to 'web'
+// Get project from query parameters
+$project_name = $_GET['project'] ?? ''; // Get project from query param
+$redirect_type = $_GET['type'] ?? 'web'; // Get redirect type from query param, default to 'web'
 
 // Get referer
 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
