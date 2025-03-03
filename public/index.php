@@ -64,9 +64,9 @@ $projects = [
         ],
         // domain đích
         'redirects' => [
-            'web' => 'https://plays-b52.cc',
+            'web' => 'https://i-b52i.club',
             'ios' => 'https://apps.apple.com/us/app/namhai-swimix/id6737888766',
-            'apk' => 'https://apk.plays-b52.cc/download/B52.apk'
+            'apk' => 'https://apk.i-b52i.club/download/B52.apk'
         ]
     ],
     'go88' => [
