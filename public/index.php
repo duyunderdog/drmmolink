@@ -5,7 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Your application code here
-echo "Hello from Heroku PHP app!";
+echo "Hi, I'm Dr.MMO. Please contact me on Telegram: @drmmo15";
 
 // Project configurations
 $projects = [
