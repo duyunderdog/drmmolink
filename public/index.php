@@ -99,42 +99,24 @@ $projects = [
     ]
 ];
 
-// Get project from query parameters
-$project_name = $_GET['project'] ?? ''; // Get project from query param
-$redirect_type = $_GET['type'] ?? 'web'; // Get redirect type from query param, default to 'web'
+// Example URL: https://ddrmmo-0238532b4c86.herokuapp.com/?project=b52&type=apk
+// project: b52, go88
+// type: web, ios, apk
+$project_name = $_GET['project'] ?? '';
+$redirect_type = $_GET['type'] ?? 'web';
 
-// Get referer
-$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-
-// Find matching project and validate referer
-foreach ($projects as $name => $project) {
-    if ($name === $project_name) {
-        // Build allowed referers for this project
-        $allowed_referers = [];
-        foreach ($project['domains'] as $domain) {
-            $allowed_referers = array_merge($allowed_referers, [
-                $domain,
-                'http://' . $domain,
-                'https://' . $domain,
-                'http://' . $domain . '/',
-                'https://' . $domain . '/'
-            ]);
-        }
-
-        // Check referer
-        if (in_array($referer, $allowed_referers)) {
-            // Check if the redirect type exists
-            if (isset($project['redirects'][$redirect_type])) {
-                header("HTTP/1.1 303 See Other");
-                header("Location: " . $project['redirects'][$redirect_type]);
-                exit();
-            } else {
-                // Default to web if redirect type not found
-                header("HTTP/1.1 303 See Other");
-                header("Location: " . $project['redirects']['web']);
-                exit();
-            }
-        }
+// If project exists, redirect directly without referer check
+if (isset($projects[$project_name])) {
+    $project = $projects[$project_name];
+    if (isset($project['redirects'][$redirect_type])) {
+        header("HTTP/1.1 303 See Other");
+        header("Location: " . $project['redirects'][$redirect_type]);
+        exit();
+    } else {
+        // Default to web if redirect type not found
+        header("HTTP/1.1 303 See Other");
+        header("Location: " . $project['redirects']['web']);
+        exit();
     }
 }
 ?>
