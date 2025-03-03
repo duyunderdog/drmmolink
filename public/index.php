@@ -1,4 +1,12 @@
 <?php
+// Ensure errors are displayed during development
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Your application code here
+echo "Hello from Heroku PHP app!";
+
 // Project configurations
 $projects = [
     'hitclub' => [
